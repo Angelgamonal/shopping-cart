@@ -1,4 +1,8 @@
-export const Footer = ({ filters }) => {
+import { useFilters } from "../hooks/useFilters";
+
+export const Footer = () => {
+  const { filters } = useFilters();
+
   return (
     <footer
       className="fixed left-4 bottom-4 text-left py-2 px-6 rounded-3xl opacity-95"
