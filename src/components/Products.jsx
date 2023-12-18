@@ -1,6 +1,9 @@
+import { useCart } from "../hooks/useCart";
 import { AddToCartIcon } from "./Icons";
 
 export const Products = ({ products = [] }) => {
+  const { addCart } = useCart();
+
   return (
     <ul
       style={{
@@ -27,7 +30,12 @@ export const Products = ({ products = [] }) => {
           </div>
 
           <div>
-            <button className="bg-neutral-800 px-3 py-2 rounded-md">
+            <button
+              className="bg-neutral-800 px-3 py-2 rounded-md"
+              onClick={() => {
+                addCart(product);
+              }}
+            >
               <AddToCartIcon />
             </button>
           </div>

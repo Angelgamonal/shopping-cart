@@ -40,6 +40,7 @@ export const Filters = () => {
           <option value="all">Todas</option>
           <option value="laptops">Laptops</option>
           <option value="smartphones">Celulares</option>
+          <option value="home-decoration">Decoraciones</option>
         </select>
       </div>
     </section>

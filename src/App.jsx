@@ -5,6 +5,8 @@ import { products as initialProducts } from "./mocks/products.json";
 import { Footer } from "./components/Footer";
 import { IS_DEVELOPMENT } from "./config";
 import { useFilters } from "./hooks/useFilters";
+import { Cart } from "./components/Cart";
+import { CartProvider } from "./context/cart";
 
 function App() {
   const [products] = useState(initialProducts);
@@ -14,15 +16,19 @@ function App() {
   const filteredProducts = filterProducts(products);
 
   return (
-    <>
+    <CartProvider>
       <main className="container m-auto my-2">
+        <h2 className="text-lg text-red-600">min 1:27</h2>
+
         <Header />
+
+        <Cart />
 
         <Products products={filteredProducts} />
 
-        {IS_DEVELOPMENT && <Footer />}
+        {!IS_DEVELOPMENT && <Footer />}
       </main>
-    </>
+    </CartProvider>
   );
 }
 
