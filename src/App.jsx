@@ -17,9 +17,7 @@ function App() {
 
   return (
     <CartProvider>
-      <main className="container m-auto my-2">
-        <h2 className="text-lg text-red-600">min 1:27</h2>
-
+      <main className="max-w-screen-lg m-auto my-2">
         <Header />
 
         <Cart />

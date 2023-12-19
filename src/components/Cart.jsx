@@ -1,11 +1,28 @@
 import { useId } from "react";
-import { CartIcon } from "./Icons";
+import { CartIcon, ClearCartIcon } from "./Icons";
 import "../styles/cart.css";
 import { useCart } from "../hooks/useCart";
 
+const ItemCart = ({ product, addToCart }) => {
+  return (
+    <li>
+      <img src={product.thumbnail} alt={product.title} />
+      <dir>
+        <strong>{product.title}</strong> - ${product.price}
+      </dir>
+
+      <footer>
+        <small>Qty: {product.quantity}</small>
+
+        <button onClick={addToCart}>+</button>
+      </footer>
+    </li>
+  );
+};
+
 export const Cart = () => {
   const cartCheckId = useId();
-  const { cart, addCart } = useCart();
+  const { cart, addCart, clearCart } = useCart();
 
   return (
     <>
@@ -17,26 +34,22 @@ export const Cart = () => {
       <aside className="cart">
         <ul>
           {cart.map((item) => (
-            <li key={item.id}>
-              <img src={item.thumbnail} alt={item.title} />
-              <dir>
-                <strong>{item.title}</strong> - ${item.price}
-              </dir>
-
-              <footer>
-                <small>Qty: {item.quantity}</small>
-
-                <button
-                  onClick={() => {
-                    addCart(item);
-                  }}
-                >
-                  +
-                </button>
-              </footer>
-            </li>
+            <ItemCart
+              key={item.id}
+              product={item}
+              addToCart={() => addCart(item)}
+            />
           ))}
         </ul>
+
+        <button
+          className="px-3 py-2 rounded-md bg-neutral-800"
+          onClick={() => {
+            clearCart();
+          }}
+        >
+          <ClearCartIcon />
+        </button>
       </aside>
     </>
   );
