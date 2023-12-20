@@ -20,15 +20,25 @@ const useCartReducer = () => {
 
   const clearCart = () => dispatch({ type: "CLEAR_CART" });
 
-  return { state, addCart, removeProductForId, clearCart };
+  const decrementQuantity = (product) =>
+    dispatch({ type: "DECREMENT_QUANTITY", payload: product });
+
+  return { state, addCart, removeProductForId, clearCart, decrementQuantity };
 };
 
 export const CartProvider = ({ children }) => {
-  const { addCart, clearCart, removeProductForId, state } = useCartReducer();
+  const { addCart, clearCart, removeProductForId, state, decrementQuantity } =
+    useCartReducer();
 
   return (
     <CartContext.Provider
-      value={{ cart: state, addCart, clearCart, removeProductForId }}
+      value={{
+        cart: state,
+        addCart,
+        clearCart,
+        removeProductForId,
+        decrementQuantity,
+      }}
     >
       {children}
     </CartContext.Provider>
