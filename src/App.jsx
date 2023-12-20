@@ -24,7 +24,7 @@ function App() {
 
         <Products products={filteredProducts} />
 
-        {!IS_DEVELOPMENT && <Footer />}
+        {IS_DEVELOPMENT && <Footer />}
       </main>
     </CartProvider>
   );
